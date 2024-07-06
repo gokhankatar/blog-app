@@ -49,9 +49,11 @@ const models = ref({
 
 const getBlogs = async () => {
   try {
+    isLoading.value = true;
     let url = "https://jsonplaceholder.typicode.com/posts";
     const req = await axios.get(url);
     blogArr.value = req.data.slice(0, 20);
+    isLoading.value = false;
   } catch (error) {
     console.error(error.message);
   }
@@ -70,9 +72,7 @@ const snippet = (value) => {
 };
 
 onMounted(() => {
-  isLoading.value = true;
   getBlogs();
-  isLoading.value = false;
 });
 </script>
 <style scoped>
