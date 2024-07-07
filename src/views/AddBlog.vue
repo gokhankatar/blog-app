@@ -73,6 +73,7 @@
   <!-- toast -->
   <v-snackbar :color="info.color" v-model="isAddedBlog">{{ info.msg }}</v-snackbar>
 </template>
+
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
@@ -108,14 +109,12 @@ const info = ref({
 
 const addPost = async () => {
   try {
-    let url = "https://jsonplaceholder.typicode.com/posts";
-    const req = await axios.post(url, {
-      title: models.value.title,
-      body: models.value.content,
-      userId: 1,
-    });
+    // ! sending to database
+    let url =
+      "https://blog-app-4075f-default-rtdb.europe-west1.firebasedatabase.app/post.json";
+    const req = await axios.post(url, models.value);
 
-    if (req.status === 201) {
+    if (req.status === 200) {
       isAddedBlog.value = true;
       info.value.msg = "Added your blog ";
       info.value.color = "green";

@@ -1,5 +1,10 @@
 {
   "name": "blog-app",
+  "author":{
+    "name":"Gokhan",
+    "surname":"Katar",
+    "github":"https://github.com/gokhankatar/"
+  },
   "version": "0.0.0",
   "private": true,
   "scripts": {

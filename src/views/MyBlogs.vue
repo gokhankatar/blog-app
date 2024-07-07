@@ -11,6 +11,7 @@
       />
     </v-col>
   </v-row>
+
   <v-row v-if="!isLoading" class="d-flex flex-wrap justify-center align-center ga-2">
     <v-col
       v-for="(item, index) of filteredArr"
@@ -22,13 +23,17 @@
     >
       <v-card
         @click="$router.replace(`/blog/${item.id}`)"
-        class="card cursor-pointer pa-5 d-flex flex-column ga-3"
+        class="card cursor-pointer pa-5 d-flex flex-column align-start ga-1"
         height="260"
       >
         <v-card-title v-colorful class="text-uppercase text-h5">{{
           item.title
         }}</v-card-title>
-        <v-card-text class="subtitle-1">{{ snippet(item.body) }}</v-card-text>
+        <v-card-text class="subtitle-1">{{ item.author }}</v-card-text>
+        <v-card-text class="subtitle-1">{{ snippet(item.content) }}</v-card-text>
+        <v-chip class="bg-pink-lighten-1 border-none" variant="outlined">{{
+          item.category
+        }}</v-chip>
       </v-card>
     </v-col>
   </v-row>
@@ -49,10 +54,12 @@ const models = ref({
 
 const getBlogs = async () => {
   try {
+    // ! get blogs from database
     isLoading.value = true;
-    let url = "https://jsonplaceholder.typicode.com/posts";
+    let url =
+      "https://blog-app-4075f-default-rtdb.europe-west1.firebasedatabase.app/post.json";
     const req = await axios.get(url);
-    blogArr.value = req.data.slice(0, 20);
+    blogArr.value = Object.keys(req.data).map((key) => ({ id: key, ...req.data[key] }));
     isLoading.value = false;
   } catch (error) {
     console.error(error.message);
