@@ -14,14 +14,14 @@
 ## Dark Mode
 <img src="src/screenshots/dark-mode.png" />
 
-## Detail View
-<img src="src/screenshots/detail-view.png" />
-
 ## Tablet View
 <img src="src/screenshots/tablet-view.png" />
 
 ## Mobile View
 <img src="src/screenshots/mobile-view.png" />
+
+## Detail View
+<img src="src/screenshots/detail-view.png" />
 
 ## Installation
 
